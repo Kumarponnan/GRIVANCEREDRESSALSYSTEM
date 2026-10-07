@@ -10,7 +10,10 @@ print(f"[DEBUG] TWILIO_PHONE_NUMBER: {os.environ.get('TWILIO_PHONE_NUMBER', 'NOT
 from fastapi import FastAPI, Form, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-import mysql.connector
+try:
+    import mysql.connector
+except ImportError:
+    mysql = None
 import bcrypt
 import os
 from datetime import datetime, timedelta
@@ -73,11 +76,19 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# Mount static files for frontend
-app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="frontend")
+# Mount static files for frontend (safe for Vercel - directory may not exist)
+try:
+    if os.path.exists("frontend"):
+        app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="frontend")
+except Exception as e:
+    print(f"[WARN] Could not mount frontend static files: {e}")
 
-# Mount uploads directory for serving uploaded files
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+# Mount uploads directory (safe for Vercel - create dir if missing)
+try:
+    os.makedirs("uploads", exist_ok=True)
+    app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+except Exception as e:
+    print(f"[WARN] Could not mount uploads directory: {e}")
 
 # Initialize RAG classifier
 rag_classifier = RAGEnhancedClassifier()
