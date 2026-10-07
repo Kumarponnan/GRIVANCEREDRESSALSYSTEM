@@ -1,0 +1,92 @@
+# ============================================
+# AI-Powered Petition/Grievance Portal
+# .gitignore - Protect sensitive files
+# ============================================
+
+# ---- Environment / Secrets ----
+.env
+.env.local
+.env.production
+*.env
+backend/.env
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.cache
+*.log
+.pytest_cache/
+.mypy_cache/
+
+# ---- Virtual Environments ----
+venv/
+env/
+ENV/
+.venv/
+.env/
+Pipfile.lock
+
+# ---- Node / npm (if any) ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ---- Uploads (user-submitted files) ----
+uploads/
+
+# ---- Database files ----
+*.db
+*.sqlite
+*.sqlite3
+
+# ---- OS-specific ----
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ---- IDE / Editor ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- Temporary files ----
+*.tmp
+*.bak
+*.backup
+
+# ---- Docker ----
+docker-compose.override.yml
+
+# ---- ML Model files (large binaries - add if needed) ----
+*.pkl
+*.h5
+*.model
+backend/model/
