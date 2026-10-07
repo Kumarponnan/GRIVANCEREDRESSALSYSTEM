@@ -19,6 +19,7 @@
 
     <!-- External dependencies -->
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="js/api.js"></script>
     <script type="text/javascript" src="js/reminders.js"></script>
 
@@ -1525,7 +1526,7 @@
           // Fetch department-level statistics
           let deptStats = null;
           try {
-            const statsResp = await fetch(`http://localhost:8000/admin/statistics`);
+            const statsResp = await fetch(`${window.API_BASE_URL || 'http://localhost:8000'}/admin/statistics`);
             const statsData = await statsResp.json();
             if (statsData.success && statsData.statistics && statsData.statistics.by_department && statsData.statistics.by_department[department]) {
               deptStats = statsData.statistics.by_department[department];

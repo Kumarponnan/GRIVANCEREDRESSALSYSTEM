@@ -4,7 +4,9 @@
  */
 
 // API Configuration
-const API_BASE_URL = "http://localhost:8000"; // Change this to match your FastAPI server address
+// Auto-detects environment: uses window.API_BASE_URL if set (via config.js),
+// falls back to localhost for local development.
+const API_BASE_URL = window.API_BASE_URL || "http://localhost:8000";
 
 /**
  * API Client for Mudhalvarin Mugavari Grievance Portal
