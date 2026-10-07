@@ -20,4 +20,6 @@ services:
         sync: false
       - key: PYTHONUNBUFFERED
         value: "1"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
     healthCheckPath: /docs
