@@ -6,4 +6,4 @@
  * - For PRODUCTION (Render/Vercel): set API_BASE_URL to your deployed backend URL
  *   Example: "https://grivanceredressalsystem.onrender.com"
  */
-window.API_BASE_URL = "http://localhost:8000";
+window.API_BASE_URL = "https://grivanceredressalsystemb.onrender.com";
