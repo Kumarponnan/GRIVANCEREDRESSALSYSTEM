@@ -8,6 +8,7 @@ print(f"[DEBUG] TWILIO_AUTH_TOKEN length: {len(os.environ.get('TWILIO_AUTH_TOKEN
 print(f"[DEBUG] TWILIO_PHONE_NUMBER: {os.environ.get('TWILIO_PHONE_NUMBER', 'NOT_FOUND')}")
 
 from fastapi import FastAPI, Form, UploadFile, File, HTTPException
+from fastapi.responses import RedirectResponse, FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 try:
@@ -90,7 +91,38 @@ try:
 except Exception as e:
     print(f"[WARN] Could not mount uploads directory: {e}")
 
-# Initialize RAG classifier
+# ─── Root & Frontend Page Routes ──────────────────────────────────────────
+
+@app.get("/", include_in_schema=False)
+async def root():
+    """Redirect root URL to the main frontend landing page."""
+    return RedirectResponse(url="/frontend/index.html")
+
+@app.get("/login", include_in_schema=False)
+async def login_page():
+    return RedirectResponse(url="/frontend/login_new.html")
+
+@app.get("/officer-login", include_in_schema=False)
+async def officer_login_page():
+    return RedirectResponse(url="/frontend/officer_login.html")
+
+@app.get("/file-grievance", include_in_schema=False)
+async def file_grievance_page():
+    return RedirectResponse(url="/frontend/file_grievance.html")
+
+@app.get("/track", include_in_schema=False)
+async def track_page():
+    return RedirectResponse(url="/frontend/track_grievance.html")
+
+@app.get("/dashboard", include_in_schema=False)
+async def dashboard_page():
+    return RedirectResponse(url="/frontend/dashboard.html")
+
+@app.get("/officer-dashboard", include_in_schema=False)
+async def officer_dashboard_page():
+    return RedirectResponse(url="/frontend/officer_dashboard.html")
+
+# ─── Initialize RAG classifier ─────────────────────────────────────────────
 rag_classifier = RAGEnhancedClassifier()
 
 # --------------------------- DB Connection ----------------------------
