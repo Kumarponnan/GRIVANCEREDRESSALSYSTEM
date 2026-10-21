@@ -4,7 +4,7 @@
  */
 
 // API Configuration
-const API_BASE_URL = "http://localhost:8000"; // Change this to match your FastAPI server address
+const API_BASE_URL = "https://grivanceredressalsystemb.onrender.com"; // Change this to match your FastAPI server address
 
 /**
  * API Client for Mudhalvarin Mugavari Grievance Portal
